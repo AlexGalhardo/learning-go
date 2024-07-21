@@ -31,6 +31,11 @@
    - Air: <https://github.com/air-verse/air>
 - Admin Dashboard
    - GoAdmin: <https://www.go-admin.com/>
+- Tests
+   - Testify: <https://github.com/stretchr/testify>
+- Utility
+   - GoFunk: <https://github.com/thoas/go-funk>
+   - GoUtil : <https://github.com/gookit/goutil>
 
 ## Online Courses
 
@@ -51,3 +56,162 @@
 - <https://github.com/geiltonxavier/aprenda-go>
 - <https://github.com/mmcgrana/gobyexample>
 - <https://github.com/adonovan/gopl.io>
+- <https://github.com/golang-standards/project-layout>
+
+## Cheat Sheet CLI commands
+
+### Module Management
+
+- **Initialize a new module**
+```sh
+go mod init <module-name>
+```
+
+- **Add dependencies**
+```sh
+go get <package>
+```
+
+- **Update dependencies**
+```sh
+go get -u <package>
+```
+
+- **Update dependencies and show details**
+```sh
+go get -u -v <package>
+```
+
+- **Organize the go.mod file**
+```sh
+go mod tidy
+```
+
+- **Check module consistency**
+```sh
+go mod verify
+```
+
+- **Show module dependencies**
+```sh
+go list -m all
+```
+
+### Compiling and Running
+
+- **Compile code**
+```sh
+go build
+```
+
+- **Compile for a specific file**
+```sh
+go build -o <filename>
+```
+
+- **Run code**
+```sh
+go run <file>.go
+```
+
+- **Install executable**
+```sh
+go install
+```
+
+### Tests
+
+- **Run tests**
+```sh
+go test
+```
+
+- **Run tests with details**
+```sh
+go test -v
+```
+
+- **Run tests on all packages**
+```sh
+go test ./...
+```
+
+### Documentation
+
+- **Show documentation for a package**
+```sh
+go doc <package>
+```
+
+- **Show documentation and examples for a package**
+```sh
+go doc -all <package>
+```
+
+### Miscellaneous Tools
+
+- **Format code**
+```sh
+go fmt <file>.go
+```
+
+- **Format all project files**
+```sh
+go fmt ./...
+```
+
+- **Check code style**
+```sh
+go vet
+```
+
+- **Download dependencies**
+```sh
+go mod download
+```
+
+- **Check dependency versions**
+```sh
+go list -m -u all
+```
+
+### Binary Generation
+
+- **Compile for multiple platforms**
+```sh
+GOOS=<operating-system> GOARCH=<architecture> go build -o <filename>
+```
+
+Example for compiling for 64-bit Linux:
+```sh
+GOOS=linux GOARCH=amd64 go build -o meu_programa_linux
+```
+
+### Tool Specific Commands
+
+- **Install a specific tool**
+```sh
+go install <package>
+```
+
+Example for installing `golint`:
+```sh
+go install golang.org/x/lint/golint@latest
+```
+
+### Package Management
+
+- **Check for outdated packages**
+```sh
+go list -u -m all
+```
+
+### Debugging
+
+- **Run the debugger**
+
+Note: `dlv` is part of the Delve package for debugging.
+```sh
+dlv debug
+```
+
