@@ -9,17 +9,28 @@
 - https://go.dev/doc/install
 
 ## Tools
-- Playground: https://go.dev/play/
+- Playground: <https://go.dev/play/>
+- Tour: <https://go.dev/tour/>
 - <https://gobyexample.com/>
 - <https://go-proverbs.github.io/>
 - <https://www.asemanago.dev/>
+- <https://golangweekly.com/>
 
 ## Libs and Frameworks
 
 - HTTP
    - Gin: <https://gin-gonic.com/>
+   - Fiber: <https://docs.gofiber.io/>
+      - Examples: <https://github.com/gofiber/recipes>
+   - Iris: <https://www.iris-go.com/>
 - ORM
    - GoRM: <https://gorm.io/>
+- Dotenv
+   - GoDotEnv: <https://github.com/joho/godotenv>
+- Live Reloading
+   - Air: <https://github.com/air-verse/air>
+- Admin Dashboard
+   - GoAdmin: <https://www.go-admin.com/>
 
 ## Online Courses
 
@@ -39,3 +50,4 @@
 - <https://github.com/vkorbes/aprendago>
 - <https://github.com/geiltonxavier/aprenda-go>
 - <https://github.com/mmcgrana/gobyexample>
+- <https://github.com/adonovan/gopl.io>

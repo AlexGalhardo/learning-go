@@ -1,0 +1,7 @@
+PATCH http://localhost:3000/api/user/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjE4MjI1NDcsInVzZXJfaWQiOjIsInVzZXJuYW1lIjoiYWxleCJ9.x5x4zSKWx0ypL0-ubNmfxKTAF9E8BFEAUIxQBl8sq40
+
+{
+  "names": "names updated"
+}
