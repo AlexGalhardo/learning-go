@@ -1,0 +1,56 @@
+{{ define "base" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='shortcut icon' href='/static/img/favicon.ico' type='image/x-icon'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Reenie+Beanie&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">    
+    <title>{{ template "title" . }} - Quicknotes</title>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <h1><a href="/">Quicknotes</a></h1>
+        </div>
+        <nav>
+            <div class="wrapper">
+                {{if isAuthenticated}}
+                <a href="/note">Home</a>
+                <a href="/note/new">Adicionar Anotação</a>
+                {{else}}
+                    <a href="/">Home</a>
+                {{end}}
+                <div class="right">
+                    {{if isAuthenticated}}                        
+                        <a href="/user/signout">Sair</a>                        
+                        <span class="profile">{{userEmail}}</span>
+                    {{else}}
+                        <a href="/user/signup">Cadastrar-se</a>
+                        <a href="/user/signin">Entrar</a>
+                    {{end}}
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="wrapper">
+            {{ template "main" . }}
+        </div>
+    </main>
+    <footer>
+        <div class="wrapper">
+            @v1 &copy;2023 por Robson Gomes. Todos os direitos reservados.
+        </div>
+    </footer>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/index.js"></script>
+    {{block "script" .}}
+        
+    {{end}}
+</body>
+</html>
+{{ end }}

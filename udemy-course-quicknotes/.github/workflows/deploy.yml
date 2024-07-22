@@ -1,0 +1,34 @@
+name: deploy-quicknotes
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Deploy to remote server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.REMOTE_SSH_KEY }}
+          ARGS: "-rlgoDzvc -i"
+          SOURCE: "./"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USERNAME }}
+          TARGET: "~/app"
+          SCRIPT_BEFORE: |
+            rm -rf ~/app
+          SCRIPT_AFTER: |
+            cd app
+            rm -f .env
+            echo "DB_PASSWORD=${{secrets.DB_PASSWORD}}" >> .env
+            echo "DB_USER=${{secrets.DB_USER}}" >> .env
+            echo "QNS_MAIL_FROM=${{secrets.QNS_MAIL_FROM}}" >> .env
+            echo "QNS_MAIL_HOST=${{secrets.QNS_MAIL_HOST}}" >> .env
+            echo "QNS_MAIL_PORT=${{secrets.QNS_MAIL_PORT}}" >> .env
+            echo "QNS_MAIL_USERNAME=${{secrets.QNS_MAIL_USERNAME}}" >> .env
+            echo "QNS_MAIL_PASSWORD=${{secrets.QNS_MAIL_PASSWORD}}" >> .env
+            echo "QNS_CSRF_KEY=${{secrets.QNS_CSRF_KEY}}" >> .env
+            sed -i 's/%{DOZZLE_PASSWORD}/"${{secrets.DOZZLE_PASSWORD}}"/g' dozzle/users.yml
+            docker compose stop
+            docker compose up -d --build &

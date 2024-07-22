@@ -1,0 +1,51 @@
+{{ define "title" }}Atualizar anotação{{end}}
+
+{{ define "main" }}
+<h1>Atualizar anotação</h1>
+<form action="/note" method="post">
+    {{with .FieldErrors}}
+        <ul class="errors">
+        {{range .}}
+            <li>{{.}}</li>
+        {{end}}
+        </ul>
+    {{end}}
+    {{csrfField}}
+    <input type="hidden" name="id" value="{{.Id}}">
+    <label for="title">Título</label>
+    <input required type="text" name="title" id="title" value="{{.Title}}">
+
+    <label for="content">Conteúdo</label>
+    <textarea name="content" id="content" cols="30" rows="10">
+        {{- .Content -}}
+    </textarea>
+
+    <label for="color">Cor do Cartão</label>
+    <input id="color" type="hidden" name="color" value="{{.Color}}">
+    <div class="color-picker">
+        {{ $color := .Color }}
+        {{range .Colors}}
+            <div data-color="{{.}}" class="color {{.}} {{if eq . $color}}active{{end}}"></div>
+        {{end}}
+    </div>
+
+    <div class="buttons">
+        <button class="success" type="submit">Salvar</button>
+        <button class="neutral" type="button">Cancelar</button>
+    </div>
+</form>
+{{ end }}
+
+{{define "script"}}
+    <script>
+        $(".color").click(function(){
+            $(".color").removeClass("active")
+            $(this).addClass("active")
+            $("#color").val($(this).data("color"))
+        })
+
+        $("button.neutral").click(function(){
+            window.location.href = "/note"
+        })
+    </script>
+{{end}}

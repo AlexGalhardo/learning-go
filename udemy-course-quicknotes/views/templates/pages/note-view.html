@@ -1,0 +1,36 @@
+{{ define "title"}}Visualização da nota {{ .Id }}{{ end }}
+
+{{define "main" }}
+<div class="note-view">
+    <h3>{{.Title}}</h3>
+    <p>{{.Content}}</p>
+    <div class="buttons">
+        <button data-noteid="{{.Id}}" class="info" type="button">Editar</button>
+        <button data-noteid="{{.Id}}" class="danger" type="button">Deletar</button>
+    </div>
+</div>
+{{ end }}
+
+{{ define "script"}}
+<script>
+    $("button.danger").click(function(event) {
+        event.stopPropagation()
+        if (window.confirm("Tem certeza que deseja deletar essa anotação?")) {
+            $.ajax({
+                url: "/note/" + $(this).data("noteid"),
+                type: "DELETE",
+                headers: {
+                    "X-CSRF-Token": "{{csrfToken}}"
+                },
+                success: function() {
+                    window.location.href = "/note"
+                }
+            })
+        }
+    })
+
+    $("button.info").click(function(event) {
+        window.location.href = "/note/" + $(this).data("noteid") + "/edit"
+    })
+</script>
+{{end}}
