@@ -11,6 +11,7 @@
 ## Tools
 - Playground: <https://go.dev/play/>
 - Tour: <https://go.dev/tour/>
+- MailHog: <https://github.com/mailhog/MailHog>
 - <https://gobyexample.com/>
 - <https://go-proverbs.github.io/>
 - <https://www.asemanago.dev/>
