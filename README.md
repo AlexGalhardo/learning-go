@@ -36,6 +36,8 @@
 - Utility
    - GoFunk: <https://github.com/thoas/go-funk>
    - GoUtil : <https://github.com/gookit/goutil>
+- Databases
+   - Golang-Migrate: <https://github.com/golang-migrate/migrate>
 
 ## Online Courses
 
