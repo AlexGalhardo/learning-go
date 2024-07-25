@@ -16,6 +16,7 @@ services:
       - quicknotes
     ports:
       - "5432:5432"  
+  
   migrate:
     image: migrate/migrate
     networks:
@@ -29,6 +30,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+  
   server:
     build:
       context: ./
@@ -49,6 +51,7 @@ services:
       QNS_MAIL_PASSWORD: ${QNS_MAIL_PASSWORD}
       QNS_MAIL_FROM: ${QNS_MAIL_FROM}
       QNS_CSRF_KEY: ${QNS_CSRF_KEY}
+  
   caddy:
     build:
       context: ./caddy

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:16-alpine  
@@ -41,7 +39,7 @@ services:
       - quicknotes
     restart: unless-stopped
     environment:
-      QNS_DB_CONN_URL: "postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_USER}?sslmode=disable"
+      QNS_DB_CONN_URL: "postgres://${DB_USER}:${DB_PASSWORD}@localhost:5432/${DB_USER}"
       QNS_SERVER_PORT: "5000"
       QNS_MAIL_HOST: ${QNS_MAIL_HOST}
       QNS_MAIL_PORT: ${QNS_MAIL_PORT}
@@ -76,6 +74,10 @@ services:
 
 networks:
   quicknotes:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16
 
 volumes:
   caddy_data:
